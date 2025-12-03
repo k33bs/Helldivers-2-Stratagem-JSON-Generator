@@ -32,11 +32,19 @@ output/
   {
     "name": "Reinforce",
     "sequence": ["W", "S", "D", "A", "W"],
+    "category": "Common",
     "dept": "Common",
     "icon": "reinforce.png"
   }
 ]
 ```
+
+**Categories** (sorted in this order):
+- `Common` - Reinforce, Resupply, SOS Beacon, SSSD Delivery
+- `Objectives` - Mission objectives (SEAF Artillery, Hellbomb, etc.)
+- `Offensive` - Orbital/Eagle strikes (red icons in-game)
+- `Supply` - Weapons, backpacks, guard dogs, exosuits (blue icons)
+- `Defense` - Sentries, mines, emplacements (green icons)
 
 ## Requirements
 

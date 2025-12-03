@@ -196,6 +196,38 @@ function toKebabCase(str) {
     .replace(/^-|-$/g, '');   // Trim hyphens from ends
 }
 
+// Infer category from stratagem name (matches in-game grouping)
+// Categories: Offensive (red), Supply (blue), Defense (green), Common
+function inferCategory(name, dept) {
+  // Common/Objectives stay as-is
+  if (dept === 'Common' || dept === 'Objectives') {
+    return dept === 'Common' ? 'Common' : 'Objectives';
+  }
+
+  // Offensive - Orbital and Eagle strikes
+  if (name.startsWith('Orbital ') || name.startsWith('Eagle ')) {
+    return 'Offensive';
+  }
+
+  // Defense patterns - sentries, emplacements, mines
+  if (
+    name.startsWith('A/') ||           // Sentries (A/MG-43, A/AC-8, etc.)
+    name.startsWith('E/') ||           // Emplacements (E/MG-101, E/AT-12)
+    name.startsWith('MD-') ||          // Mines
+    name.startsWith('FX-') ||          // Shield Generator Relay
+    name.includes('Tesla Tower') ||
+    name.includes('Rocket Sentry')     // AX/MLS-4X Rocket Sentry is defense (not other AX/ guard dogs)
+  ) {
+    return 'Defense';
+  }
+
+  // Everything else is Supply (weapons, backpacks, guard dogs, exosuits, etc.)
+  return 'Supply';
+}
+
+// Category sort order
+const CATEGORY_ORDER = ['Common', 'Objectives', 'Offensive', 'Supply', 'Defense'];
+
 function checkRsvgConvert() {
   try {
     execSync('rsvg-convert --version', { stdio: 'pipe' });
@@ -353,15 +385,17 @@ async function main() {
 
       // Get sequence from sequences.json
       const sequence = sequences[hellpadName] || [];
+      const category = inferCategory(hellpadName, dept);
 
       stratagems.push({
         name: hellpadName,
         sequence: sequence,
+        category: category,
         dept: dept,
         icon: iconFileName
       });
 
-      console.log(`  ${baseName} -> ${iconFileName} (${dept})`);
+      console.log(`  ${baseName} -> ${iconFileName} (${category})`);
     }
   }
 
@@ -381,21 +415,25 @@ async function main() {
       // Copy the source icon to create a physical duplicate
       fs.copyFileSync(sourcePath, destPath);
 
+      const category = inferCategory(name, dept);
       stratagems.push({
         name: name,
         sequence: sequences[name] || [],
+        category: category,
         dept: dept,
         icon: iconFileName
       });
-      console.log(`  ${name} -> ${iconFileName} (copied from ${sourceName})`);
+      console.log(`  ${name} -> ${iconFileName} (${category}, copied from ${sourceName})`);
     } else {
       console.warn(`  WARNING: Source icon "${sourceName}" not found for "${name}"`);
     }
   }
 
-  // Sort by department, then by name
+  // Sort by category order, then by name within category
   stratagems.sort((a, b) => {
-    if (a.dept !== b.dept) return a.dept.localeCompare(b.dept);
+    const catA = CATEGORY_ORDER.indexOf(a.category);
+    const catB = CATEGORY_ORDER.indexOf(b.category);
+    if (catA !== catB) return catA - catB;
     return a.name.localeCompare(b.name);
   });
 
