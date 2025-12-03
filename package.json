@@ -1,0 +1,13 @@
+{
+  "name": "stratagem-icon-generator",
+  "version": "1.0.0",
+  "description": "Generate PNG icons from Helldivers 2 Stratagems SVG repo",
+  "main": "generate.js",
+  "type": "module",
+  "scripts": {
+    "generate": "node generate.js"
+  },
+  "dependencies": {
+    "adm-zip": "^0.5.16"
+  }
+}
