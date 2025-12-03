@@ -41,6 +41,7 @@ output/
 
 - Node.js 18+
 - `rsvg-convert` (install via `brew install librsvg` on macOS)
+- `zopflipng` (optional, for PNG optimization: `brew install zopfli`)
 
 ## Usage
 
@@ -52,6 +53,9 @@ npm run generate
 
 # Generate custom size
 node generate.js --size 64
+
+# Optimize PNGs (requires zopflipng)
+node generate.js --optimize
 ```
 
 ## Adding New Stratagems

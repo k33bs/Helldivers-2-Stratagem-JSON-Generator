@@ -16,6 +16,7 @@ const DEFAULT_ICON_SIZE = 126;
 function parseArgs() {
   const args = process.argv.slice(2);
   let size = DEFAULT_ICON_SIZE;
+  let optimize = false;
 
   for (let i = 0; i < args.length; i++) {
     if (args[i] === '--size' || args[i] === '-s') {
@@ -25,25 +26,28 @@ function parseArgs() {
         process.exit(1);
       }
       i++;
+    } else if (args[i] === '--optimize' || args[i] === '-o') {
+      optimize = true;
     } else if (args[i] === '--help' || args[i] === '-h') {
       console.log(`
 Usage: node generate.js [options]
 
 Options:
   -s, --size <px>   Icon size in pixels (default: ${DEFAULT_ICON_SIZE})
+  -o, --optimize    Optimize PNGs with optipng (requires optipng installed)
   -h, --help        Show this help message
 
 Example:
-  node generate.js --size 64
+  node generate.js --size 64 --optimize
 `);
       process.exit(0);
     }
   }
 
-  return { size };
+  return { size, optimize };
 }
 
-const { size: ICON_SIZE } = parseArgs();
+const { size: ICON_SIZE, optimize: OPTIMIZE } = parseArgs();
 
 // Folders to skip (not actual stratagems)
 const SKIP_FOLDERS = [
@@ -201,6 +205,24 @@ function checkRsvgConvert() {
   }
 }
 
+function checkZopflipng() {
+  try {
+    execSync('zopflipng --help', { stdio: 'pipe' });
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+function optimizePng(pngPath) {
+  try {
+    execSync(`zopflipng -y "${pngPath}" "${pngPath}"`, { stdio: 'pipe' });
+    return true;
+  } catch {
+    return false;
+  }
+}
+
 async function downloadZip(url, destPath) {
   console.log(`Downloading ${url}...`);
   const response = await fetch(url);
@@ -249,6 +271,14 @@ async function main() {
     console.error('Error: rsvg-convert is not installed.');
     console.error('Install it with: brew install librsvg (macOS) or apt install librsvg2-bin (Linux)');
     process.exit(1);
+  }
+
+  // Check for zopflipng if optimization requested
+  const canOptimize = OPTIMIZE && checkZopflipng();
+  if (OPTIMIZE && !canOptimize) {
+    console.warn('Warning: --optimize requested but zopflipng is not installed.');
+    console.warn('Install it with: brew install zopfli (macOS) or apt install zopfli (Linux)');
+    console.warn('Continuing without optimization...\n');
   }
 
   const workDir = __dirname;
@@ -360,6 +390,19 @@ async function main() {
     if (a.dept !== b.dept) return a.dept.localeCompare(b.dept);
     return a.name.localeCompare(b.name);
   });
+
+  // Optimize PNGs if requested
+  if (canOptimize) {
+    console.log('\nOptimizing PNGs...');
+    const pngFiles = fs.readdirSync(iconsDir).filter(f => f.endsWith('.png'));
+    let optimized = 0;
+    for (const file of pngFiles) {
+      if (optimizePng(path.join(iconsDir, file))) {
+        optimized++;
+      }
+    }
+    console.log(`Optimized ${optimized}/${pngFiles.length} PNGs`);
+  }
 
   // Write JSON with sequences on single lines
   const jsonPath = path.join(outputDir, 'stratagems.json');
