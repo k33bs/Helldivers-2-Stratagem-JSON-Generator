@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stratagem Icon Viewer</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #1a1a1a;
+            color: #fff;
+            margin: 0;
+            padding: 20px;
+        }
+        body.modal-open {
+            overflow: hidden;
+        }
+        h1 {
+            text-align: center;
+            color: #ffe710;
+            margin-bottom: 10px;
+        }
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        .control-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        label {
+            color: #aaa;
+        }
+        select {
+            background: #333;
+            color: #fff;
+            border: 1px solid #555;
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        select:hover, select:focus {
+            border-color: #ffe710;
+            outline: none;
+        }
+        .search-box {
+            background: #333;
+            color: #fff;
+            border: 1px solid #555;
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-size: 14px;
+            width: 200px;
+        }
+        .search-box:focus {
+            outline: none;
+            border-color: #ffe710;
+        }
+        .search-box::placeholder {
+            color: #aaa;
+        }
+        .stats {
+            text-align: center;
+            color: #888;
+            margin-bottom: 20px;
+        }
+        .category-section {
+            margin-bottom: 30px;
+        }
+        .category-header {
+            background: #2a2a2a;
+            padding: 10px 15px;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .category-name {
+            font-size: 18px;
+            font-weight: 600;
+            color: #ffe710;
+        }
+        .category-count {
+            background: #444;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 12px;
+            color: #aaa;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(var(--col-width, 100px), 1fr));
+            gap: 15px;
+        }
+        .stratagem {
+            background: #252525;
+            border-radius: 8px;
+            padding: 10px;
+            text-align: center;
+            transition: transform 0.15s, background 0.15s, box-shadow 0.15s;
+            cursor: pointer;
+        }
+        .stratagem:hover {
+            transform: scale(1.05);
+            background: #333;
+        }
+        .stratagem:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px #ffe710;
+        }
+        .stratagem img {
+            width: 64px;
+            height: 64px;
+            image-rendering: auto;
+        }
+        .stratagem-name {
+            font-size: 11px;
+            font-weight: bold;
+            color: #ccc;
+            margin-top: 8px;
+            line-height: 1.3;
+            height: 2.6em;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+        }
+        .sequence {
+            font-size: 14px;
+            color: #fff;
+            margin-top: 4px;
+            font-family: system-ui, sans-serif;
+        }
+        .sequence span {
+            display: inline-block;
+            width: 18px;
+            height: 18px;
+            line-height: 18px;
+            background: #444;
+            border-radius: 3px;
+            margin: 1px;
+            font-weight: bold;
+        }
+        .sequence .W { background: #2d8a2d; }
+        .sequence .A { background: #b33030; }
+        .sequence .S { background: #3030b3; }
+        .sequence .D { background: #b3a030; }
+
+        /* Modal for enlarged view */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        .modal.active {
+            display: flex;
+        }
+        .modal-content {
+            background: #2a2a2a;
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            max-width: 400px;
+        }
+        .modal-content img {
+            width: 128px;
+            height: 128px;
+            image-rendering: auto;
+        }
+        .modal-content h2 {
+            color: #ffe710;
+            margin: 15px 0 10px;
+        }
+        .modal-content .meta {
+            color: #888;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+        .modal-content .sequence {
+            font-size: 16px;
+        }
+        .modal-content .sequence span {
+            width: 24px;
+            height: 24px;
+            line-height: 24px;
+            font-size: 14px;
+        }
+        .close-btn {
+            margin-top: 20px;
+            background: #444;
+            border: none;
+            color: #fff;
+            padding: 10px 30px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .close-btn:hover {
+            background: #555;
+        }
+        .close-btn:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px #ffe710;
+        }
+    </style>
+</head>
+<body>
+    <h1>Stratagem Icon Viewer</h1>
+
+    <div class="controls">
+        <div class="control-group">
+            <input type="text" id="searchBox" class="search-box" placeholder="Search stratagems...">
+        </div>
+        <div class="control-group">
+            <label for="groupBy">Group by:</label>
+            <select id="groupBy">
+                <option value="category">Category</option>
+                <option value="dept">Department</option>
+                <option value="none">None (Alphabetical)</option>
+            </select>
+        </div>
+        <div class="control-group">
+            <label for="iconSize">Icon size:</label>
+            <select id="iconSize">
+                <option value="48">Small (48px)</option>
+                <option value="64" selected>Medium (64px)</option>
+                <option value="96">Large (96px)</option>
+                <option value="126">Original (126px)</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="stats" id="stats"></div>
+
+    <div id="container"></div>
+
+    <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modal-name">
+        <div class="modal-content">
+            <img id="modal-img" src="" alt="">
+            <h2 id="modal-name"></h2>
+            <div class="meta" id="modal-meta"></div>
+            <div class="sequence" id="modal-sequence"></div>
+            <button class="close-btn" id="closeBtn">Close</button>
+        </div>
+    </div>
+
+    <script type="module">
+        // State
+        let stratagems = [];
+        let lastFocusedElement = null;
+        let searchTimeout = null;
+
+        // Category order (matches HellPad)
+        const categoryOrder = ['Common', 'Objectives', 'Offensive', 'Supply', 'Defense'];
+
+        // DOM elements
+        const container = document.getElementById('container');
+        const modal = document.getElementById('modal');
+        const searchBox = document.getElementById('searchBox');
+        const groupBySelect = document.getElementById('groupBy');
+        const iconSizeSelect = document.getElementById('iconSize');
+        const closeBtn = document.getElementById('closeBtn');
+        const statsEl = document.getElementById('stats');
+
+        // HTML escape to prevent XSS
+        function escapeHtml(str) {
+            const div = document.createElement('div');
+            div.textContent = str;
+            return div.innerHTML;
+        }
+
+        // Base path for assets (auto-detected)
+        let basePath = 'output/';
+
+        async function loadData() {
+            try {
+                // Try output/ first (development), then root (release zip)
+                let response = await fetch('output/stratagems.json');
+                if (!response.ok) {
+                    response = await fetch('stratagems.json');
+                    basePath = '';
+                }
+                stratagems = await response.json();
+                statsEl.textContent = `${stratagems.length} stratagems loaded`;
+                render();
+            } catch (err) {
+                container.innerHTML = `<p style="color: red;">Error loading data: ${escapeHtml(err.message)}<br>Make sure output/ folder exists (run npm run generate) or place viewer.html alongside stratagems.json</p>`;
+            }
+        }
+
+        function getSequenceHTML(sequence) {
+            const arrows = { W: '↑', A: '←', S: '↓', D: '→' };
+            return sequence.map(dir => `<span class="${escapeHtml(dir)}">${arrows[dir] || escapeHtml(dir)}</span>`).join('');
+        }
+
+        function render() {
+            const groupBy = groupBySelect.value;
+            const iconSize = iconSizeSelect.value;
+            const searchQuery = searchBox.value.toLowerCase().trim();
+
+            // Filter by search
+            const filtered = searchQuery
+                ? stratagems.filter(s => s.name.toLowerCase().includes(searchQuery))
+                : stratagems;
+
+            // Update stats
+            statsEl.textContent = searchQuery
+                ? `${filtered.length} of ${stratagems.length} stratagems`
+                : `${stratagems.length} stratagems loaded`;
+
+            // Update grid column width based on icon size (icon + padding + margin)
+            const colWidth = parseInt(iconSize) + 40;
+            document.documentElement.style.setProperty('--col-width', colWidth + 'px');
+
+            let html = '';
+
+            if (groupBy === 'none') {
+                // Sort alphabetically
+                const sorted = [...filtered].sort((a, b) => a.name.localeCompare(b.name));
+                html = `<div class="grid">${sorted.map(s => renderStratagem(s, iconSize)).join('')}</div>`;
+            } else {
+                // Group by category or dept
+                const groups = {};
+                filtered.forEach(s => {
+                    const key = s[groupBy] || 'Unknown';
+                    if (!groups[key]) groups[key] = [];
+                    groups[key].push(s);
+                });
+
+                // Sort groups by category order if grouping by category
+                const sortedKeys = groupBy === 'category'
+                    ? categoryOrder.filter(c => groups[c]).concat(Object.keys(groups).filter(k => !categoryOrder.includes(k)))
+                    : Object.keys(groups).sort();
+
+                sortedKeys.forEach(key => {
+                    const items = groups[key].sort((a, b) => a.name.localeCompare(b.name));
+                    html += `
+                        <div class="category-section">
+                            <div class="category-header">
+                                <span class="category-name">${escapeHtml(key)}</span>
+                                <span class="category-count">${items.length}</span>
+                            </div>
+                            <div class="grid">
+                                ${items.map(s => renderStratagem(s, iconSize)).join('')}
+                            </div>
+                        </div>
+                    `;
+                });
+            }
+
+            container.innerHTML = html;
+        }
+
+        function renderStratagem(s, iconSize) {
+            const safeName = escapeHtml(s.name);
+            const safeIcon = escapeHtml(s.icon);
+            return `
+                <div class="stratagem" tabindex="0" role="button" data-name="${safeName}">
+                    <img src="${basePath}icons/${safeIcon}" alt="${safeName}" style="width:${iconSize}px;height:${iconSize}px;">
+                    <div class="stratagem-name">${safeName}</div>
+                    <div class="sequence">${getSequenceHTML(s.sequence)}</div>
+                </div>
+            `;
+        }
+
+        function showModal(name) {
+            const s = stratagems.find(x => x.name === name);
+            if (!s) return;
+
+            lastFocusedElement = document.activeElement;
+
+            document.getElementById('modal-img').src = `${basePath}icons/${encodeURIComponent(s.icon)}`;
+            document.getElementById('modal-name').textContent = s.name;
+            document.getElementById('modal-meta').textContent = `${s.category} / ${s.dept}`;
+            document.getElementById('modal-sequence').innerHTML = getSequenceHTML(s.sequence);
+            modal.classList.add('active');
+            document.body.classList.add('modal-open');
+
+            // Focus the close button for accessibility
+            closeBtn.focus();
+        }
+
+        function closeModal() {
+            modal.classList.remove('active');
+            document.body.classList.remove('modal-open');
+
+            // Return focus to the element that opened the modal
+            if (lastFocusedElement) {
+                lastFocusedElement.focus();
+                lastFocusedElement = null;
+            }
+        }
+
+        // Debounced search
+        function debouncedRender() {
+            clearTimeout(searchTimeout);
+            searchTimeout = setTimeout(render, 150);
+        }
+
+        // Event delegation for stratagem clicks
+        container.addEventListener('click', e => {
+            const card = e.target.closest('.stratagem');
+            if (card) {
+                showModal(card.dataset.name);
+            }
+        });
+
+        // Keyboard support for stratagem cards
+        container.addEventListener('keydown', e => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                const card = e.target.closest('.stratagem');
+                if (card) {
+                    e.preventDefault();
+                    showModal(card.dataset.name);
+                }
+            }
+        });
+
+        // Close modal on escape or click outside
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape') {
+                if (modal.classList.contains('active')) {
+                    closeModal();
+                }
+            }
+        });
+
+        modal.addEventListener('click', e => {
+            if (e.target === modal) closeModal();
+        });
+
+        closeBtn.addEventListener('click', closeModal);
+
+        // Focus trap for modal
+        modal.addEventListener('keydown', e => {
+            if (e.key === 'Tab') {
+                // Simple focus trap - keep focus on close button
+                e.preventDefault();
+                closeBtn.focus();
+            }
+        });
+
+        // Event listeners
+        groupBySelect.addEventListener('change', render);
+        iconSizeSelect.addEventListener('change', render);
+        searchBox.addEventListener('input', debouncedRender);
+        searchBox.addEventListener('keydown', e => {
+            if (e.key === 'Escape') {
+                e.target.value = '';
+                render();
+            }
+        });
+
+        // Load data on page load
+        loadData();
+    </script>
+</body>
+</html>

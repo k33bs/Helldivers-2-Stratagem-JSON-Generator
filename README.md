@@ -8,6 +8,7 @@ Pre-generated files are available in [Releases](../../releases):
 - `helldivers2-stratagems-vX.X.X.zip` containing:
   - `stratagems.json` - All stratagem data with input sequences
   - `icons/` - 126px PNG icons (zopfli-optimized)
+  - `viewer.html` - Browser-based icon viewer
 
 ## Data Sources
 
@@ -66,6 +67,43 @@ node generate.js --size 64
 # Optimize PNGs (requires zopflipng)
 node generate.js --optimize
 ```
+
+## Viewer
+
+A browser-based viewer (`viewer.html`) is included to browse all stratagems with search, filtering, and grouping options.
+
+**Note:** The viewer auto-detects paths and works in both contexts:
+- **From source:** Run `npm run generate` first (creates `output/` folder)
+- **From release:** Just unzip and run - viewer finds files automatically
+
+Since browsers block local file access (CORS), you need to run a simple HTTP server:
+
+**macOS / Linux:**
+```bash
+python3 -m http.server 8000
+# Open http://localhost:8000/viewer.html
+```
+
+**Windows (PowerShell):**
+```powershell
+python -m http.server 8000
+# Open http://localhost:8000/viewer.html
+```
+
+**Windows (if Python not installed):**
+```powershell
+# Using Node.js (npx comes with Node)
+npx serve .
+# Open the URL shown in terminal
+```
+
+### Viewer Features
+
+- Search stratagems by name
+- Group by Category, Department, or Alphabetical
+- Adjustable icon sizes (48px, 64px, 96px, 126px)
+- Click any icon for enlarged view with input sequence
+- Keyboard accessible (Tab, Enter, Escape)
 
 ## Credits
 
