@@ -365,7 +365,7 @@ async function main() {
     }
   }
 
-  // Add stratagems that share icons with others
+  // Add stratagems that share icons with others (create physical duplicate)
   for (const [name, sourceName] of Object.entries(SHARED_ICONS)) {
     const sourceStratagem = stratagems.find(s => s.name === sourceName);
     if (sourceStratagem) {
@@ -373,13 +373,21 @@ async function main() {
       if (OBJECTIVE_STRATAGEMS.includes(name)) dept = 'Objectives';
       else if (COMMON_STRATAGEMS.includes(name)) dept = 'Common';
 
+      // Create unique icon filename for this stratagem
+      const iconFileName = toKebabCase(name) + '.png';
+      const sourcePath = path.join(iconsDir, sourceStratagem.icon);
+      const destPath = path.join(iconsDir, iconFileName);
+
+      // Copy the source icon to create a physical duplicate
+      fs.copyFileSync(sourcePath, destPath);
+
       stratagems.push({
         name: name,
         sequence: sequences[name] || [],
         dept: dept,
-        icon: sourceStratagem.icon  // Use same icon as source
+        icon: iconFileName
       });
-      console.log(`  ${name} -> ${sourceStratagem.icon} (shared from ${sourceName})`);
+      console.log(`  ${name} -> ${iconFileName} (copied from ${sourceName})`);
     } else {
       console.warn(`  WARNING: Source icon "${sourceName}" not found for "${name}"`);
     }
