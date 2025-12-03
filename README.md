@@ -5,8 +5,9 @@ Generates PNG icons and a unified JSON file containing all HELLDIVERS 2 stratage
 ## Download
 
 Pre-generated files are available in [Releases](../../releases):
-- `stratagems.json` - All stratagem data with input sequences
-- `icons.zip` - PNG icons (126px)
+- `helldivers2-stratagems-vX.X.X.zip` containing:
+  - `stratagems.json` - All stratagem data with input sequences
+  - `icons/` - 126px PNG icons (zopfli-optimized)
 
 ## Data Sources
 
@@ -57,15 +58,6 @@ node generate.js --size 64
 # Optimize PNGs (requires zopflipng)
 node generate.js --optimize
 ```
-
-## Adding New Stratagems
-
-1. Add the input sequence to `sequences.json`:
-   ```json
-   "New Stratagem Name": ["W", "A", "S", "D"]
-   ```
-2. If the SVG filename differs from the in-game name, add a mapping to `NAME_MAP` in `generate.js`
-3. Run `npm run generate`
 
 ## Credits
 
