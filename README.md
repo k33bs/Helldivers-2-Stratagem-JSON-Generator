@@ -41,7 +41,7 @@ output/
 ```
 
 **Categories** (sorted in this order):
-- `Common` - Reinforce, Resupply, SOS Beacon, SSSD Delivery
+- `Common` - Reinforce, Resupply, SOS Beacon, Eagle Rearm
 - `Objectives` - Mission objectives (SEAF Artillery, Hellbomb, etc.)
 - `Offensive` - Orbital/Eagle strikes (red icons in-game)
 - `Supply` - Weapons, backpacks, guard dogs, exosuits (blue icons)
