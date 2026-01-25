@@ -2,6 +2,8 @@
 
 Generates PNG icons and a unified JSON file containing all HELLDIVERS 2 stratagems with their input sequences.
 
+**Currently includes 96 stratagems** from all warbonds and the base game.
+
 ## Download
 
 Pre-generated files are available in [Releases](../../releases):
@@ -104,6 +106,30 @@ npx serve .
 - Adjustable icon sizes (48px, 64px, 96px, 126px)
 - Click any icon for enlarged view with input sequence
 - Keyboard accessible (Tab, Enter, Escape)
+
+## Included Warbonds
+
+- Base Game (Hangar, Orbital Cannons, Engineering Bay, etc.)
+- Chemical Agents
+- Urban Legends
+- Servants of Freedom
+- Borderline Justice
+- Masters of Ceremony
+- Force of Law
+- Control Group
+- Dust Devils
+- Python Commandos
+- Redacted Regiment
+
+## Adding New Stratagems
+
+When new stratagems are added to the game:
+
+1. Add the input sequence to `sequences.json` (use the in-game name as the key)
+2. If the SVG filename differs from the in-game name, add a mapping in `generate.js` (`NAME_MAP`)
+3. Run `npm run generate` to verify - missing sequences will be listed at the end
+
+See `CLAUDE.md` for detailed technical documentation.
 
 ## Credits
 
