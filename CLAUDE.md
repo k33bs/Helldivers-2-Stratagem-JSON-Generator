@@ -47,11 +47,12 @@ npx serve .
 
 ## Architecture
 
-**Data Pipeline:** GitHub SVG repo (ZIP) → Extract to `temp/` → Convert to PNG → Merge with sequences.json → Sort by category/name → Output JSON + icons → Clean up `temp/`
+**Data Pipeline:** GitHub SVG repo (ZIP) → Extract to `temp/` → Convert to PNG → Merge with sequences.json + aliases.json → Sort by category/name → Output JSON + icons → Clean up `temp/`
 
 **Key Files:**
 - `generate.js` - Main CLI script with all conversion logic
 - `sequences.json` - Manual database of 96 stratagem input sequences (format: `{ "Name": ["W", "A", "S", "D"] }`)
+- `aliases.json` - Display names and TTS pronunciations (format: `{ "Name": { "short": "Short Name", "speak": "tts text" } }`)
 - `viewer.html` - Standalone browser viewer with search/filter/grouping (no build step, self-contained)
 - `output/stratagems.json` - Generated JSON **array** with stratagem objects (sorted by `CATEGORY_ORDER` then name for deterministic diffs)
 - `output/icons/` - Generated PNG files (kebab-case filenames)
@@ -94,15 +95,26 @@ The output is a JSON **array** of stratagem objects:
 ```json
 [
   {
-    "name": "Reinforce",
-    "sequence": ["W", "S", "D", "A", "W"],
-    "category": "Common",
-    "dept": "Common",
-    "icon": "reinforce.png"
+    "name": "Eagle 500kg Bomb",
+    "short": "500kg Bomb",
+    "sequence": ["W", "D", "S", "S", "S"],
+    "category": "Offensive",
+    "dept": "Hangar",
+    "icon": "eagle-500kg-bomb.png",
+    "speak": "five hundred kilo bomb"
   },
   ...
 ]
 ```
+
+**Fields:**
+- `name` - Full in-game stratagem name
+- `short` - Shortened display name (strips model prefixes like "Eagle", "AC-8", etc.)
+- `sequence` - D-pad input sequence (W=Up, A=Left, S=Down, D=Right)
+- `category` - In-game category for sorting/grouping
+- `dept` - Ship department or warbond source
+- `icon` - PNG filename
+- `speak` *(optional)* - Text-to-speech friendly pronunciation for acronyms/numbers
 
 ## Adding New Stratagems
 
@@ -110,9 +122,11 @@ The output is a JSON **array** of stratagem objects:
 2. If SVG filename differs from in-game name, add entry to `NAME_MAP` in `generate.js`
 3. If it's a new department/warbond, add to `DEPT_MAP`
 4. If it's a new objective or common stratagem, add to `OBJECTIVE_STRATAGEMS` or `COMMON_STRATAGEMS`
-5. If no SVG exists, add to `SHARED_ICONS` to reuse another icon (note: can only be 'Objectives' or 'Common' dept)
-6. Run `npm run generate` and check for missing sequence warnings
-7. If upstream later adds the real SVG, remove from `SHARED_ICONS`
+5. If the name has a model prefix (e.g., "AC-8 Autocannon"), add an entry to `aliases.json` with the `short` name
+6. If the name has acronyms or numbers that TTS struggles with, add a `speak` field to `aliases.json`
+7. If no SVG exists, add to `SHARED_ICONS` to reuse another icon (note: can only be 'Objectives' or 'Common' dept)
+8. Run `npm run generate` and check for missing sequence warnings
+9. If upstream later adds the real SVG, remove from `SHARED_ICONS`
 
 ## Release Packaging
 

@@ -302,6 +302,19 @@ function loadSequences() {
   }
 }
 
+function loadAliases() {
+  const aliasesPath = path.join(__dirname, 'aliases.json');
+  if (!fs.existsSync(aliasesPath)) {
+    return {};
+  }
+  try {
+    return JSON.parse(fs.readFileSync(aliasesPath, 'utf8'));
+  } catch (err) {
+    console.warn(`Warning: Failed to parse aliases.json: ${err.message}`);
+    return {};
+  }
+}
+
 async function main() {
   // Check for rsvg-convert
   if (!checkRsvgConvert()) {
@@ -350,6 +363,10 @@ async function main() {
   const sequences = loadSequences();
   console.log(`Loaded ${Object.keys(sequences).length} sequences from sequences.json`);
 
+  // Load aliases (short names, speak text) from aliases.json
+  const aliases = loadAliases();
+  console.log(`Loaded ${Object.keys(aliases).length} aliases from aliases.json`);
+
   // Scan for SVGs
   const stratagems = [];
   const folders = fs.readdirSync(svgRootDir).filter(f => {
@@ -391,14 +408,19 @@ async function main() {
       // Get sequence from sequences.json
       const sequence = sequences[hellpadName] || [];
       const category = inferCategory(hellpadName, dept);
+      const alias = aliases[hellpadName] || {};
 
-      stratagems.push({
+      const stratagem = {
         name: hellpadName,
+        short: alias.short || hellpadName,
         sequence: sequence,
         category: category,
         dept: dept,
         icon: iconFileName
-      });
+      };
+      if (alias.speak) stratagem.speak = alias.speak;
+
+      stratagems.push(stratagem);
 
       console.log(`  ${baseName} -> ${iconFileName} (${category})`);
     }
@@ -421,13 +443,18 @@ async function main() {
       fs.copyFileSync(sourcePath, destPath);
 
       const category = inferCategory(name, dept);
-      stratagems.push({
+      const alias = aliases[name] || {};
+      const stratagem = {
         name: name,
+        short: alias.short || name,
         sequence: sequences[name] || [],
         category: category,
         dept: dept,
         icon: iconFileName
-      });
+      };
+      if (alias.speak) stratagem.speak = alias.speak;
+
+      stratagems.push(stratagem);
       console.log(`  ${name} -> ${iconFileName} (${category}, copied from ${sourceName})`);
     } else {
       console.warn(`  WARNING: Source icon "${sourceName}" not found for "${name}"`);

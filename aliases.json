@@ -1,0 +1,258 @@
+{
+  "SOS Beacon": {
+    "speak": "s.o.s. beacon"
+  },
+  "SE-45 Seismic Probe": {
+    "short": "Seismic Probe"
+  },
+  "SEAF Artillery": {
+    "short": "SEAF"
+  },
+  "SSSD Delivery": {
+    "short": "SSSD"
+  },
+  "Eagle 110mm Rocket Pods": {
+    "short": "Rocket Pods"
+  },
+  "Eagle 500kg Bomb": {
+    "short": "500kg Bomb",
+    "speak": "five hundred kilo bomb"
+  },
+  "Eagle Airstrike": {
+    "short": "Airstrike"
+  },
+  "Eagle Cluster Bomb": {
+    "short": "Cluster Bomb"
+  },
+  "Eagle Napalm Airstrike": {
+    "short": "Napalm Airstrike"
+  },
+  "Eagle Smoke Strike": {
+    "short": "Smoke Strike"
+  },
+  "Eagle Strafing Run": {
+    "short": "Strafing Run"
+  },
+  "Orbital 120mm HE Barrage": {
+    "short": "120mm HE Barrage",
+    "speak": "one twenty barrage"
+  },
+  "Orbital 380mm HE Barrage": {
+    "short": "380mm HE Barrage",
+    "speak": "three eighty barrage"
+  },
+  "Orbital Airburst Strike": {
+    "short": "Airburst Strike"
+  },
+  "Orbital EMS Strike": {
+    "short": "EMS Strike",
+    "speak": "e.m.s. strike"
+  },
+  "Orbital Gas Strike": {
+    "short": "Gas Strike"
+  },
+  "Orbital Gatling Barrage": {
+    "short": "Gatling Barrage"
+  },
+  "Orbital Napalm Barrage": {
+    "short": "Napalm Barrage"
+  },
+  "Orbital Precision Strike": {
+    "short": "Precision Strike"
+  },
+  "Orbital Railcannon Strike": {
+    "short": "Railcannon Strike"
+  },
+  "Orbital Smoke Strike": {
+    "short": "Smoke Strike"
+  },
+  "Orbital Walking Barrage": {
+    "short": "Walking Barrage"
+  },
+  "AC-8 Autocannon": {
+    "short": "Autocannon"
+  },
+  "APW-1 Anti-Materiel Rifle": {
+    "short": "Anti-Materiel Rifle"
+  },
+  "ARC-3 Arc Thrower": {
+    "short": "Arc Thrower"
+  },
+  "AX/AR-23 Guard Dog": {
+    "short": "Guard Dog"
+  },
+  "AX/ARC-3 Guard Dog K-9": {
+    "short": "K-9",
+    "speak": "k. nine"
+  },
+  "AX/FLAM-75 Guard Dog Hot Dog": {
+    "short": "Hot Dog"
+  },
+  "AX/LAS-5 Guard Dog Rover": {
+    "short": "Rover"
+  },
+  "AX/TX-13 Guard Dog Dog Breath": {
+    "short": "Dog Breath"
+  },
+  "B-1 Supply Pack": {
+    "short": "Supply Pack"
+  },
+  "B-100 Portable Hellbomb": {
+    "short": "Portable Hellbomb"
+  },
+  "B-MD C4 Pack": {
+    "short": "C4 Pack",
+    "speak": "c. four pack"
+  },
+  "Call In Super Destroyer": {
+    "short": "Super Destroyer"
+  },
+  "CQC-1 One True Flag": {
+    "short": "One True Flag"
+  },
+  "CQC-9 Defoliation Tool": {
+    "short": "Defoliation Tool"
+  },
+  "EAT-17 Expendable Anti-Tank": {
+    "short": "Expendable Anti-Tank"
+  },
+  "EAT-700 Expendable Napalm": {
+    "short": "Expendable Napalm"
+  },
+  "EXO-45 Patriot Exosuit": {
+    "short": "Patriot Exosuit"
+  },
+  "EXO-49 Emancipator Exosuit": {
+    "short": "Emancipator Exosuit"
+  },
+  "FAF-14 Spear": {
+    "short": "Spear"
+  },
+  "FLAM-40 Flamethrower": {
+    "short": "Flamethrower"
+  },
+  "GL-21 Grenade Launcher": {
+    "short": "Grenade Launcher"
+  },
+  "GL-52 De-Escalator": {
+    "short": "De-Escalator"
+  },
+  "GR-8 Recoilless Rifle": {
+    "short": "Recoilless Rifle"
+  },
+  "LAS-98 Laser Cannon": {
+    "short": "Laser Cannon"
+  },
+  "LAS-99 Quasar Cannon": {
+    "short": "Quasar Cannon"
+  },
+  "LIFT-182 Warp Pack": {
+    "short": "Warp Pack"
+  },
+  "LIFT-860 Hover Pack": {
+    "short": "Hover Pack"
+  },
+  "M-1000 Maxigun": {
+    "short": "Maxigun"
+  },
+  "M-102 Fast Recon Vehicle": {
+    "short": "Fast Recon Vehicle"
+  },
+  "M-105 Stalwart": {
+    "short": "Stalwart"
+  },
+  "MG-206 Heavy Machine Gun": {
+    "short": "Heavy Machine Gun"
+  },
+  "MG-43 Machine Gun": {
+    "short": "Machine Gun"
+  },
+  "MLS-4X Commando": {
+    "short": "Commando"
+  },
+  "MS-11 Solo Silo": {
+    "short": "Solo Silo"
+  },
+  "PLAS-45 Epoch": {
+    "short": "Epoch"
+  },
+  "RL-77 Airburst Rocket Launcher": {
+    "short": "Airburst Rocket Launcher"
+  },
+  "RS-422 Railgun": {
+    "short": "Railgun"
+  },
+  "S-11 Speargun": {
+    "short": "Speargun"
+  },
+  "SH-20 Ballistic Shield Backpack": {
+    "short": "Ballistic Shield"
+  },
+  "SH-32 Shield Generator Pack": {
+    "short": "Shield Generator"
+  },
+  "SH-51 Directional Shield": {
+    "short": "Directional Shield"
+  },
+  "StA-X3 W.A.S.P. Launcher": {
+    "short": "W.A.S.P. Launcher",
+    "speak": "wasp launcher"
+  },
+  "TX-41 Sterilizer": {
+    "short": "Sterilizer"
+  },
+  "A/AC-8 Autocannon Sentry": {
+    "short": "Autocannon Sentry"
+  },
+  "A/ARC-3 Tesla Tower": {
+    "short": "Tesla Tower"
+  },
+  "A/FLAM-40 Flame Sentry": {
+    "short": "Flame Sentry"
+  },
+  "A/G-16 Gatling Sentry": {
+    "short": "Gatling Sentry"
+  },
+  "A/LAS-98 Laser Sentry": {
+    "short": "Laser Sentry"
+  },
+  "A/M-12 Mortar Sentry": {
+    "short": "Mortar Sentry"
+  },
+  "A/M-23 EMS Mortar Sentry": {
+    "short": "EMS Mortar Sentry",
+    "speak": "e.m.s. mortar sentry"
+  },
+  "A/MG-43 Machine Gun Sentry": {
+    "short": "Machine Gun Sentry"
+  },
+  "AX/MLS-4X Rocket Sentry": {
+    "short": "Rocket Sentry"
+  },
+  "E/AT-12 Anti-Tank Emplacement": {
+    "short": "Anti-Tank Emplacement"
+  },
+  "E/GL-21 Grenadier Battlement": {
+    "short": "Grenadier Battlement"
+  },
+  "E/MG-101 HMG Emplacement": {
+    "short": "HMG Emplacement",
+    "speak": "h.m.g. emplacement"
+  },
+  "FX-12 Shield Generator Relay": {
+    "short": "Shield Generator Relay",
+    "speak": "shield generator"
+  },
+  "MD-17 Anti-Tank Mines": {
+    "short": "Anti-Tank Mines"
+  },
+  "MD-6 Anti-Personnel Minefield": {
+    "short": "Anti-Personnel Minefield"
+  },
+  "MD-8 Gas Mines": {
+    "short": "Gas Mines"
+  },
+  "MD-I4 Incendiary Mines": {
+    "short": "Incendiary Mines"
+  }
+}

@@ -1,6 +1,6 @@
 # Helldivers 2 Stratagem JSON Generator
 
-Generates PNG icons and a unified JSON file containing all HELLDIVERS 2 stratagems with their input sequences.
+Generates PNG icons and a unified JSON file containing all HELLDIVERS 2 stratagems with their input sequences, display names, and text-to-speech pronunciations.
 
 **Currently includes 96 stratagems** from all warbonds and the base game.
 
@@ -16,6 +16,7 @@ Pre-generated files are available in [Releases](../../releases):
 
 - **SVG Icons**: Downloaded from [nvigneux/Helldivers-2-Stratagems-icons-svg](https://github.com/nvigneux/Helldivers-2-Stratagems-icons-svg)
 - **Input Sequences**: Manually maintained in `sequences.json`
+- **Display Names & TTS**: Manually maintained in `aliases.json`
 
 ## Output
 
@@ -25,7 +26,7 @@ output/
 │   ├── reinforce.png
 │   ├── eagle-500kg-bomb.png
 │   └── ...
-└── stratagems.json     # Combined data: name, sequence, department, icon
+└── stratagems.json     # Combined data
 ```
 
 ### stratagems.json format
@@ -33,14 +34,25 @@ output/
 ```json
 [
   {
-    "name": "Reinforce",
-    "sequence": ["W", "S", "D", "A", "W"],
-    "category": "Common",
-    "dept": "Common",
-    "icon": "reinforce.png"
+    "name": "Eagle 500kg Bomb",
+    "short": "500kg Bomb",
+    "sequence": ["W", "D", "S", "S", "S"],
+    "category": "Offensive",
+    "dept": "Hangar",
+    "icon": "eagle-500kg-bomb.png",
+    "speak": "five hundred kilo bomb"
   }
 ]
 ```
+
+**Fields:**
+- `name` - Full in-game stratagem name
+- `short` - Shortened display name (strips model prefixes like "Eagle", "AC-8", etc.)
+- `sequence` - D-pad input sequence (W=Up, A=Left, S=Down, D=Right)
+- `category` - In-game category for sorting/grouping
+- `dept` - Ship department or warbond source
+- `icon` - PNG filename
+- `speak` *(optional)* - Text-to-speech friendly pronunciation for acronyms/numbers
 
 **Categories** (sorted in this order):
 - `Common` - Reinforce, Resupply, SOS Beacon, Eagle Rearm
@@ -127,7 +139,9 @@ When new stratagems are added to the game:
 
 1. Add the input sequence to `sequences.json` (use the in-game name as the key)
 2. If the SVG filename differs from the in-game name, add a mapping in `generate.js` (`NAME_MAP`)
-3. Run `npm run generate` to verify - missing sequences will be listed at the end
+3. If the name has a model prefix (e.g., "AC-8 Autocannon"), add an entry to `aliases.json` with the `short` name
+4. If the name has acronyms or numbers that TTS struggles with, add a `speak` field to `aliases.json`
+5. Run `npm run generate` to verify - missing sequences will be listed at the end
 
 See `CLAUDE.md` for detailed technical documentation.
 
