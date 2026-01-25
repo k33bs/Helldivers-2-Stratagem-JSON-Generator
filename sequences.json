@@ -100,5 +100,9 @@
 
   "M-1000 Maxigun": ["S", "A", "D", "S", "W", "W"],
   "AX/FLAM-75 Guard Dog Hot Dog": ["S", "W", "A", "W", "A", "A"],
-  "CQC-9 Defoliation Tool": ["S", "A", "D", "D", "S"]
+  "CQC-9 Defoliation Tool": ["S", "A", "D", "D", "S"],
+
+  "B-MD C4 Pack": ["S", "D", "W", "W", "D", "W"],
+  "Cargo Container": ["W", "W", "S", "S", "D", "S"],
+  "Call In Super Destroyer": ["W", "W", "S", "S", "A", "D", "A", "D"]
 }

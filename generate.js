@@ -74,7 +74,8 @@ const DEPT_MAP = {
   'Force of Law': 'Force of Law',
   'Control Group': 'Control Group',
   'Dust Devils': 'Dust Devils',
-  'Python Commandos': 'Python Commandos'
+  'Python Commandos': 'Python Commandos',
+  'Redacted Regiment': 'Redacted Regiment'
 };
 
 // Map SVG filename (without extension) -> HellPad stratagem name
@@ -149,6 +150,9 @@ const NAME_MAP = {
   'Guard Dog Hot Dog': 'AX/FLAM-75 Guard Dog Hot Dog',
   'Defoliation Tool': 'CQC-9 Defoliation Tool',
 
+  // Redacted Regiment
+  'C4 Pack': 'B-MD C4 Pack',
+
   // Hangar
   'Fast Recon Vehicle': 'M-102 Fast Recon Vehicle',
   'Eagle 110MM Rocket Pods': 'Eagle 110mm Rocket Pods',
@@ -176,7 +180,8 @@ const OBJECTIVE_STRATAGEMS = [
   'SEAF Artillery',
   'Dark Fluid Vessel',
   'Tectonic Drill',
-  'Hive Breaker Drill'
+  'Hive Breaker Drill',
+  'Cargo Container'
 ];
 
 // Common stratagems (from General Stratagems or Hangar)
