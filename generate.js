@@ -75,7 +75,8 @@ const DEPT_MAP = {
   'Control Group': 'Control Group',
   'Dust Devils': 'Dust Devils',
   'Python Commandos': 'Python Commandos',
-  'Redacted Regiment': 'Redacted Regiment'
+  'Redacted Regiment': 'Redacted Regiment',
+  'Siege Breakers': 'Siege Breakers'
 };
 
 // Map SVG filename (without extension) -> HellPad stratagem name
@@ -152,6 +153,12 @@ const NAME_MAP = {
 
   // Redacted Regiment
   'C4 Pack': 'B-MD C4 Pack',
+
+  // Siege Breakers
+  'CQC-20': 'CQC-20 Breaching Hammer',
+  'EAT-411': 'EAT-411 Leveller',
+  'GL-28': 'GL-28 Belt-Fed Grenade Launcher',
+  'Bastion MK XVI': 'TD-220 Bastion MK XVI',
 
   // Hangar
   'Fast Recon Vehicle': 'M-102 Fast Recon Vehicle',

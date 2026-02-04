@@ -254,5 +254,18 @@
   },
   "MD-I4 Incendiary Mines": {
     "short": "Incendiary Mines"
+  },
+  "CQC-20 Breaching Hammer": {
+    "short": "Breaching Hammer"
+  },
+  "EAT-411 Leveller": {
+    "short": "Leveller"
+  },
+  "GL-28 Belt-Fed Grenade Launcher": {
+    "short": "Belt-Fed Grenade Launcher",
+    "speak": "belt fed - grenade launcher"
+  },
+  "TD-220 Bastion MK XVI": {
+    "short": "Bastion"
   }
 }

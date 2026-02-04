@@ -104,5 +104,10 @@
 
   "B-MD C4 Pack": ["S", "D", "W", "W", "D", "W"],
   "Cargo Container": ["W", "W", "S", "S", "D", "S"],
-  "Call In Super Destroyer": ["W", "W", "S", "S", "A", "D", "A", "D"]
+  "Call In Super Destroyer": ["W", "W", "S", "S", "A", "D", "A", "D"],
+
+  "CQC-20 Breaching Hammer": ["S", "A", "D", "A", "W"],
+  "EAT-411 Leveller": ["S", "S", "A", "W", "S"],
+  "GL-28 Belt-Fed Grenade Launcher": ["S", "A", "W", "A", "W", "W"],
+  "TD-220 Bastion MK XVI": ["A", "S", "D", "S", "A", "S", "W", "S", "W"]
 }
