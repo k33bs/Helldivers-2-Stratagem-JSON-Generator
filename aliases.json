@@ -267,5 +267,20 @@
   },
   "TD-220 Bastion MK XVI": {
     "short": "Bastion"
+  },
+  "EXO-51 Lumberer Exosuit": {
+    "short": "Lumberer Exosuit"
+  },
+  "EXO-55 Breakthrough Exosuit": {
+    "short": "Breakthrough Exosuit"
+  },
+  "MGX-42 Bullet Storm": {
+    "short": "Bullet Storm"
+  },
+  "B/FLAM-80 Cremator": {
+    "short": "Cremator"
+  },
+  "A/GM-17 Gas Mortar Sentry": {
+    "short": "Gas Mortar Sentry"
   }
 }

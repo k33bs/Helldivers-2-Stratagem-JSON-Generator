@@ -167,7 +167,14 @@ const NAME_MAP = {
 
   // Orbital Cannons (case normalization)
   'Orbital 120MM HE Barrage': 'Orbital 120mm HE Barrage',
-  'Orbital 380MM HE Barrage': 'Orbital 380mm HE Barrage'
+  'Orbital 380MM HE Barrage': 'Orbital 380mm HE Barrage',
+
+  // Recent additions (SVG filenames TBD - update if upstream uses different names)
+  'Breakthrough Exosuit': 'EXO-55 Breakthrough Exosuit',
+  'Lumberer Exosuit': 'EXO-51 Lumberer Exosuit',
+  'Bullet Storm': 'MGX-42 Bullet Storm',
+  'Cremator': 'B/FLAM-80 Cremator',
+  'Gas Mortar Sentry': 'A/GM-17 Gas Mortar Sentry'
 };
 
 // Stratagems that share icons with others (name -> icon source name)
