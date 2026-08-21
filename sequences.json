@@ -115,5 +115,9 @@
   "EXO-55 Breakthrough Exosuit": ["A", "S", "D", "A", "D", "S", "W"],
   "MGX-42 Bullet Storm": ["S", "A", "S", "D", "W", "A"],
   "B/FLAM-80 Cremator": ["S", "S", "D", "S", "W", "W"],
-  "A/GM-17 Gas Mortar Sentry": ["S", "W", "D", "S", "A"]
+  "A/GM-17 Gas Mortar Sentry": ["S", "W", "D", "S", "A"],
+
+  "40-K Meltagun": ["S", "A", "W", "A", "A", "S"],
+  "M-103 Supply FRV": ["A", "S", "A", "A", "S", "W", "D"],
+  "M-104 Incinerator FRV": ["A", "S", "D", "A", "S", "W", "W"]
 }

@@ -162,6 +162,8 @@ const NAME_MAP = {
 
   // Hangar
   'Fast Recon Vehicle': 'M-102 Fast Recon Vehicle',
+  'Supply FRV': 'M-103 Supply FRV',
+  'Incinerator FRV': 'M-104 Incinerator FRV',
   'Eagle 110MM Rocket Pods': 'Eagle 110mm Rocket Pods',
   'Eagle 500KG Bomb': 'Eagle 500kg Bomb',
 

@@ -282,5 +282,17 @@
   },
   "A/GM-17 Gas Mortar Sentry": {
     "short": "Gas Mortar Sentry"
+  },
+  "40-K Meltagun": {
+    "short": "Meltagun",
+    "speak": "forty k. meltagun"
+  },
+  "M-103 Supply FRV": {
+    "short": "Supply FRV",
+    "speak": "supply f.r.v."
+  },
+  "M-104 Incinerator FRV": {
+    "short": "Incinerator FRV",
+    "speak": "incinerator f.r.v."
   }
 }

@@ -51,15 +51,15 @@ npx serve .
 
 **Key Files:**
 - `generate.js` - Main CLI script with all conversion logic
-- `sequences.json` - Manual database of 96 stratagem input sequences (format: `{ "Name": ["W", "A", "S", "D"] }`)
+- `sequences.json` - Manual database of 108 stratagem input sequences (format: `{ "Name": ["W", "A", "S", "D"] }`)
 - `aliases.json` - Display names and TTS pronunciations (format: `{ "Name": { "short": "Short Name", "speak": "tts text" } }`)
 - `viewer.html` - Standalone browser viewer with search/filter/grouping (no build step, self-contained)
 - `output/stratagems.json` - Generated JSON **array** with stratagem objects (sorted by `CATEGORY_ORDER` then name for deterministic diffs)
 - `output/icons/` - Generated PNG files (kebab-case filenames)
 
 **Important Mappings in generate.js:**
-- `NAME_MAP` (62 entries) - SVG filenames to official stratagem names. Multiple SVGs mapping to the same name will overwrite each other (last wins).
-- `DEPT_MAP` (16 entries) - Folder names to department/warbond names
+- `NAME_MAP` (74 entries) - SVG filenames to official stratagem names. Multiple SVGs mapping to the same name will overwrite each other (last wins).
+- `DEPT_MAP` (18 entries) - Folder names to department/warbond names
 - `SHARED_ICONS` - Stratagems that reuse another stratagem's icon (creates physical duplicate PNG). Dept defaults to 'Objectives', can only be overridden to 'Common' via `COMMON_STRATAGEMS`. **Remove from SHARED_ICONS once upstream adds the real SVG.**
 - `OBJECTIVE_STRATAGEMS` / `COMMON_STRATAGEMS` - Override department for specific stratagems
 

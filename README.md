@@ -2,7 +2,7 @@
 
 Generates PNG icons and a unified JSON file containing all HELLDIVERS 2 stratagems with their input sequences, display names, and text-to-speech pronunciations.
 
-**Currently includes 105 stratagems** from all warbonds and the base game.
+**Currently includes 108 stratagems** from all warbonds and the base game.
 
 ## Download
 
@@ -135,6 +135,7 @@ npx serve .
 - Siege Breakers
 - Entrenched Division
 - Exo Experts
+- Castellan's Creed
 
 ## Adding New Stratagems
 
