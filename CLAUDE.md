@@ -51,7 +51,7 @@ npx serve .
 
 **Key Files:**
 - `generate.js` - Main CLI script with all conversion logic
-- `sequences.json` - Manual database of 108 stratagem input sequences (format: `{ "Name": ["W", "A", "S", "D"] }`)
+- `sequences.json` - Manual database of 109 stratagem input sequences (format: `{ "Name": ["W", "A", "S", "D"] }`)
 - `aliases.json` - Display names and TTS pronunciations (format: `{ "Name": { "short": "Short Name", "speak": "tts text" } }`)
 - `viewer.html` - Standalone browser viewer with search/filter/grouping (no build step, self-contained)
 - `output/stratagems.json` - Generated JSON **array** with stratagem objects (sorted by `CATEGORY_ORDER` then name for deterministic diffs)

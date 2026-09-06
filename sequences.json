@@ -119,5 +119,7 @@
 
   "40-K Meltagun": ["S", "A", "W", "A", "A", "S"],
   "M-103 Supply FRV": ["A", "S", "A", "A", "S", "W", "D"],
-  "M-104 Incinerator FRV": ["A", "S", "D", "A", "S", "W", "W"]
+  "M-104 Incinerator FRV": ["A", "S", "D", "A", "S", "W", "W"],
+
+  "Eagle Gas Strike": ["W", "D", "A", "D"]
 }

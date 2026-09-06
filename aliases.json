@@ -294,5 +294,8 @@
   "M-104 Incinerator FRV": {
     "short": "Incinerator FRV",
     "speak": "incinerator f.r.v."
+  },
+  "Eagle Gas Strike": {
+    "short": "Gas Strike"
   }
 }

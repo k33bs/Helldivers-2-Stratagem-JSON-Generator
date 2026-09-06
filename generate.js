@@ -9,7 +9,8 @@ import AdmZip from 'adm-zip';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const REPO_ZIP_URL = 'https://github.com/nvigneux/Helldivers-2-Stratagems-icons-svg/archive/refs/heads/master.zip';
+// const REPO_ZIP_URL = 'https://github.com/nvigneux/Helldivers-2-Stratagems-icons-svg/archive/refs/heads/master.zip'; // upstream, slow to merge PRs
+const REPO_ZIP_URL = 'https://github.com/k33bs/Helldivers-2-Stratagems-icons-svg/archive/refs/heads/master.zip';
 const DEFAULT_ICON_SIZE = 126;
 
 // Parse command line arguments
