@@ -2,7 +2,7 @@
 
 Generates PNG icons and a unified JSON file containing all HELLDIVERS 2 stratagems with their input sequences, display names, and text-to-speech pronunciations.
 
-**Currently includes 109 stratagems** from all warbonds and the base game.
+**Currently includes 110 stratagems** from all warbonds and the base game.
 
 ## Download
 
@@ -14,7 +14,7 @@ Pre-generated files are available in [Releases](../../releases):
 
 ## Data Sources
 
-- **SVG Icons**: Downloaded from [nvigneux/Helldivers-2-Stratagems-icons-svg](https://github.com/nvigneux/Helldivers-2-Stratagems-icons-svg)
+- **SVG Icons**: Downloaded from [k33bs/Helldivers-2-Stratagems-icons-svg](https://github.com/k33bs/Helldivers-2-Stratagems-icons-svg) (fork of [nvigneux/Helldivers-2-Stratagems-icons-svg](https://github.com/nvigneux/Helldivers-2-Stratagems-icons-svg))
 - **Input Sequences**: Manually maintained in `sequences.json`
 - **Display Names & TTS**: Manually maintained in `aliases.json`
 
